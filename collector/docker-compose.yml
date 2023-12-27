@@ -1,0 +1,7 @@
+version: '3'
+services:
+  runtime:
+    build: ./rie
+    ports:
+      - 9000:8080
+      - 9001:9001

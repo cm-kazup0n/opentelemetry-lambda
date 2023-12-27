@@ -94,7 +94,7 @@ func (e *Client) Register(ctx context.Context, filename string) (*RegisterRespon
 	url := e.baseURL + action
 
 	reqBody, err := json.Marshal(map[string]interface{}{
-		"events": []EventType{Invoke, Shutdown},
+		"events": []EventType{Invoke},
 	})
 	if err != nil {
 		return nil, err
