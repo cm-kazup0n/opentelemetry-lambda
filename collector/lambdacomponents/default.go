@@ -38,7 +38,10 @@ import (
 
 	"github.com/open-telemetry/opentelemetry-lambda/collector/processor/coldstartprocessor"
 	"github.com/open-telemetry/opentelemetry-lambda/collector/receiver/telemetryapireceiver"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/datadogexporter"
 )
+
 
 func Components(extensionID string) (otelcol.Factories, error) {
 	var errs []error
@@ -56,6 +59,7 @@ func Components(extensionID string) (otelcol.Factories, error) {
 		otlpexporter.NewFactory(),
 		otlphttpexporter.NewFactory(),
 		prometheusremotewriteexporter.NewFactory(),
+		datadogexporter.NewFactory(),
 	)
 	if err != nil {
 		errs = append(errs, err)
