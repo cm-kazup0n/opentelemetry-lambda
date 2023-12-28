@@ -2,12 +2,24 @@ receivers:
   otlp:
     protocols:
       grpc:
+        endpoint: 0.0.0.0:4318
       http:
+        endpoint: 0.0.0.0:4317
 exporters:
-  debug:
+  otlphttp:
+    endpoint: http://0.0.0.0:14317
+  otlp:
+    endpoint: http://0.0.0.0:14318
+    compression: none
+    tls:
+      insecure: true
+  logging:
     verbosity: detailed
 service:
   pipelines:
+    traces:
+      receivers: [otlp]
+      exporters: [logging, otlp]
     metrics:
       receivers: [otlp]
-      exporters: [debug]
+      exporters: [logging]
