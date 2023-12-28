@@ -118,6 +118,7 @@ func (s *Listener) Shutdown() {
 }
 
 func (s *Listener) Wait(ctx context.Context, reqID string) error {
+	return nil
 	for {
 		select {
 		case <-ctx.Done():
