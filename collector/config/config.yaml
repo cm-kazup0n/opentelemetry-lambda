@@ -6,6 +6,10 @@ receivers:
       http:
         endpoint: 0.0.0.0:4317
 exporters:
+  datadog:
+    api:
+      site: datadoghq.com
+      key: ${env:DD_API_KEY}
   otlphttp:
     endpoint: http://0.0.0.0:14317
   otlp:
@@ -19,7 +23,7 @@ service:
   pipelines:
     traces:
       receivers: [otlp]
-      exporters: [logging, otlp]
+      exporters: [logging, otlp, datadog]
     metrics:
       receivers: [otlp]
       exporters: [logging]
